@@ -1,33 +1,33 @@
-import InputModule_lxc
-import Alert_module
-import AiModule
-import UserInterface_module
-import storage
+import modules.InputModule_lxc
+import modules.Alert_module
+import modules.AiModule
+import modules.UserInterface_module
+import modules.storage
 
 def main():
     
     #user interface
-    UserInterface_module.userinterface_input()
-    UserInterface_module.userinterface_output()
+    modules.UserInterface_module.userinterface_input()
+    modules.UserInterface_module.userinterface_output()
 
     #input
     pathbo="./examplebo.txt"
     pathbp="./examplebp.txt"
     pathpul="./examplepul.txt"
-    bo=InputModule_lxc.input(pathbo)
-    bp=InputModule_lxc.input(pathbp)
-    pul=InputModule_lxc.input(pathpul)
+    bo=modules.InputModule_lxc.input(pathbo)
+    bp=modules.InputModule_lxc.input(pathbp)
+    pul=modules.InputModule_lxc.input(pathpul)
 
     #storage
-    mstorage = storage.storage(bo,bp,pul)
+    mstorage = modules.storage.storage(bo,bp,pul)
 
     #ai
-    ai = AiModule.AiModule()
+    ai = modules.AiModule.AiModule()
     ai.input_check(bo, bp, pul)
     predBloodOxygen, predBloodPressure, prePulse = ai.predict()
 
     #alert
-    alt = Alert_module.Alert()
+    alt = modules.Alert_module.Alert()
     for k in range(len(bo)):
         boi = bo[k], 0
         bpi = bp[k], 1
