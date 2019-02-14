@@ -1,7 +1,7 @@
 #It's the I/O documentation for the User_Interface_system
 #Qinmei Du
 #User Interface
-def userinterface_input(a,b,c,d):
+def userinterface_input(a,b,c):
 	"""
 	Get_data_from_data_base:
 		format:(double value, int type)
