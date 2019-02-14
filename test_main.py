@@ -2,7 +2,7 @@ import modules.InputModule_lxc
 import modules.Alert_module
 import modules.AiModule
 import modules.UserInterface_module
-#import modules.Storage
+import modules.Storage
 
 def test_func():
     main()
@@ -17,7 +17,7 @@ def main():
     pul=modules.InputModule_lxc.input(pathpul)
 
     #storage
-    #mstorage = modules.Storage.Storage(bo,bp,pul)
+    mstorage = modules.Storage.Storage(bo,bp,pul)
 
     #ai
     ai = modules.AiModule.AiModule()
@@ -36,7 +36,7 @@ def main():
         alt.Alert_Output()
 
     #user interface
-    modules.UserInterface_module.userinterface_input(predBloodOxygen,predBloodPressure,prePulse)
+    modules.UserInterface_module.userinterface_input(mstorage,predBloodOxygen,predBloodPressure,prePulse)
     modules.UserInterface_module.userinterface_output()
 
 
