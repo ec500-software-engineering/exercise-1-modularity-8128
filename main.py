@@ -2,7 +2,7 @@ import modules.InputModule_lxc
 import modules.Alert_module
 import modules.AiModule
 import modules.UserInterface_module
-import modules.storage
+import modules.Storage
 
 def main():
     
@@ -19,7 +19,7 @@ def main():
     pul=modules.InputModule_lxc.input(pathpul)
 
     #storage
-    mstorage = modules.storage.storage(bo,bp,pul)
+    mstorage = modules.Storage.Storage(bo,bp,pul)
 
     #ai
     ai = modules.AiModule.AiModule()

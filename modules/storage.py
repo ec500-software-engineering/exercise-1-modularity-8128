@@ -1,12 +1,16 @@
-class storage():
-    def __init__(self,bo,bp,pul):
+# URL: https://github.com/WenjieLuo2333/ModuleDesign/blob/master/storage.py
+# Copyright 2019 Gang Wei wg0502@bu.edu
+# Storage Module
+
+class Storage():
+    def __init__(self, bo, bp, pul):
         self.bo = bo
         self.bp = bp
         self.pul = pul
     def filter(self):
         return 0
         #for useful data
-    Input = input()
+#     Input = input()
     # connection to the database
     # storage the data into the database
     # extract the data out of the database of the format
