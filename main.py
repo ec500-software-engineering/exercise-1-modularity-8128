@@ -4,6 +4,9 @@ import modules.AiModule
 import modules.UserInterface_module
 import modules.Storage
 
+def test_func():
+    main()
+
 def main():
     #input
     pathbo='./example/examplebo.txt'
