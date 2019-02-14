@@ -1,2 +1,5 @@
-numpy==1.14.3
-numpydoc==0.8.0
+numpy
+numpydoc
+
+flake8
+pytest
