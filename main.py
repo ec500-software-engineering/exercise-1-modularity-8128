@@ -5,15 +5,10 @@ import modules.UserInterface_module
 import modules.Storage
 
 def main():
-    
-    #user interface
-    modules.UserInterface_module.userinterface_input()
-    modules.UserInterface_module.userinterface_output()
-
     #input
-    pathbo="./examplebo.txt"
-    pathbp="./examplebp.txt"
-    pathpul="./examplepul.txt"
+    pathbo='./example/examplebo.txt'
+    pathbp='./example/examplebp.txt'
+    pathpul='./example/examplepul.txt'
     bo=modules.InputModule_lxc.input(pathbo)
     bp=modules.InputModule_lxc.input(pathbp)
     pul=modules.InputModule_lxc.input(pathpul)
@@ -36,6 +31,10 @@ def main():
         alt.Alert_for_three_categories_input(bpi)
         alt.Alert_for_three_categories_input(puli)
         alt.Alert_Output()
+
+    #user interface
+    modules.UserInterface_module.userinterface_input(mstorage,predBloodOxygen,predBloodPressure,prePulse)
+    modules.UserInterface_module.userinterface_output()
 
 
 if __name__ == "__main__":

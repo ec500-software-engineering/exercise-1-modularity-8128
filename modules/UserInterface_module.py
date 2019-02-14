@@ -1,7 +1,7 @@
 #It's the I/O documentation for the User_Interface_system
 #Qinmei Du
 #User Interface
-def userinterface_input():
+def userinterface_input(a,b,c,d):
 	"""
 	Get_data_from_data_base:
 		format:(double value, int type)
@@ -11,8 +11,10 @@ def userinterface_input():
 	    format: boolean control from user. Such as turn on, turn off
 	            user log in information
 	"""
+	pass
 
 def userinterface_output():
     """
     send input to electron device to show on the screen
     """
+    pass
