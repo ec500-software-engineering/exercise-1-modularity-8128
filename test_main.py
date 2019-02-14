@@ -3,6 +3,7 @@ import modules.Alert_module
 import modules.AiModule
 import modules.UserInterface_module
 import modules.Storage
+import _thread
 
 def test_func():
     main()
@@ -15,9 +16,6 @@ def main():
     bo=modules.InputModule_lxc.input(pathbo)
     bp=modules.InputModule_lxc.input(pathbp)
     pul=modules.InputModule_lxc.input(pathpul)
-
-    #storage
-    mstorage = modules.Storage.Storage(bo,bp,pul)
 
     #ai
     ai = modules.AiModule.AiModule()
@@ -36,8 +34,16 @@ def main():
         alt.Alert_Output()
 
     #user interface
-    modules.UserInterface_module.userinterface_input(mstorage,predBloodOxygen,predBloodPressure,prePulse)
+    modules.UserInterface_module.userinterface_input(predBloodOxygen,predBloodPressure,prePulse)
     modules.UserInterface_module.userinterface_output()
+
+    #all threads
+    try:
+        _thread.start_new_thread( modules.Storage.Storage, (bo,bp,pul, ) )
+        _thread.start_new_thread( modules.UserInterface_module.userinterface_input, (predBloodOxygen,predBloodPressure,prePulse, ) )
+        _thread.start_new_thread( modules.UserInterface_module.userinterface_output )
+    except:
+        print ("Error: unable to start thread")
 
 
 if __name__ == "__main__":
