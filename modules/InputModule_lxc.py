@@ -19,7 +19,7 @@ def input(path):
 		with open(path, 'r') as f:
 			read = f.read().split()
 
-	except:
+	except RuntimeError:
 		print("Reading data error")
 
 	if len(read)==0:
