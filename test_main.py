@@ -41,7 +41,7 @@ def main():
     try:
         _thread.start_new_thread( modules.Storage.Storage, (bo,bp,pul, ) )
         _thread.start_new_thread( modules.UserInterface_module.userinterface_input, (predBloodOxygen,predBloodPressure,prePulse, ) )
-        _thread.start_new_thread( modules.UserInterface_module.userinterface_output )
+        _thread.start_new_thread( modules.UserInterface_module.userinterface_output, ( ) )
     except RuntimeError:
         print ("Error: unable to start thread")
 
