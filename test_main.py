@@ -1,50 +1,38 @@
-import modules.InputModule_lxc
-import modules.Alert_module
+import modules.InputModule
+import modules.StorageModule
+import modules.AlertModule
+import modules.UserInterfaceModule
 import modules.AiModule
-import modules.UserInterface_module
-import modules.Storage
-import _thread
+import queue
+import threading
+
 
 def test_func():
     main()
 
+
 def main():
-    #input
-    pathbo='./example/examplebo.txt'
-    pathbp='./example/examplebp.txt'
-    pathpul='./example/examplepul.txt'
-    bo=modules.InputModule_lxc.input(pathbo)
-    bp=modules.InputModule_lxc.input(pathbp)
-    pul=modules.InputModule_lxc.input(pathpul)
+    q1 = queue.Queue()
+    q2 = queue.Queue()
+    q3 = queue.Queue()
+    ipt = threading.Thread(target=modules.InputModule.InputModule, args = (q1) )
+    storage = threading.Thread(target=modules.StorageModule.Storage, args = (q1))
+    getIput = threading.Thread(target=modules.StorageModule.Storage.getIput, args =("bo"))
+    alert = threading.Thread(target=modules.AlertModule.Alert, args=(q1, q2))
+    ai = threading.Thread(target=modules.AiModule.AIModule, args=(q1, q3))
+    ui = threading.Thread(target=modules.UserInterfaceModule.UserInterface,args=(q1, q2, q3))
+    ipt.start()
+    storage.start()
+    getIput.start()
+    alert.start()
+    ai.start()
+    ui.start()
+    ipt.join()
+    storage.join()
+    getIput.join()
+    alert.join()
+    ai.join()
+    ui.join()
 
-    #ai
-    ai = modules.AiModule.AiModule()
-    ai.input_check(bo, bp, pul)
-    predBloodOxygen, predBloodPressure, prePulse = ai.predict()
-
-    #alert
-    alt = modules.Alert_module.Alert()
-    for k in range(len(bo)):
-        boi = bo[k], 0
-        bpi = bp[k], 1
-        puli = pul[k], 2
-        alt.Alert_for_three_categories_input(boi)
-        alt.Alert_for_three_categories_input(bpi)
-        alt.Alert_for_three_categories_input(puli)
-        alt.Alert_Output()
-
-    #user interface
-    modules.UserInterface_module.userinterface_input(predBloodOxygen,predBloodPressure,prePulse)
-    modules.UserInterface_module.userinterface_output()
-
-    #all threads
-    try:
-        _thread.start_new_thread( modules.Storage.Storage, (bo,bp,pul, ) )
-        _thread.start_new_thread( modules.UserInterface_module.userinterface_input, (predBloodOxygen,predBloodPressure,prePulse, ) )
-        _thread.start_new_thread( modules.UserInterface_module.userinterface_output, ( ) )
-    except RuntimeError:
-        print ("Error: unable to start thread")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
